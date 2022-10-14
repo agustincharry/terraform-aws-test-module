@@ -40,4 +40,23 @@ resource "aws_iam_policy" "this" {
 }
 
 
-//
+resource "aws_iam_policy" "this" {
+  name        = "MyPolicy"
+  path        = "/"
+  description = "Example policy."
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow",
+        "Resource" : "*",
+        "Action" : [
+          "ecr:*",
+          "sqs:*",
+          "kms:*",
+          "secretsmanager:*",
+        ]
+      }
+    ]
+  })
+}
