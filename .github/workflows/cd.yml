@@ -4,10 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release Version"
+        description: "Release Version. Must start with \"v\""
+        type: string
         required: true
       description:
         description: "Release Description"
+        type: string
         required: true
 
 jobs:
