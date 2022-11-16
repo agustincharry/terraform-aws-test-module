@@ -5,9 +5,23 @@ on:
   workflow_call:
 
 jobs:
-  bash-example:
+  build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+      
+      - name: Configure AWS credentials
+        id: creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: "123"
+          aws-secret-access-key: "456"
+          aws-region: "us-east-1"
+
       - name: script
         run: |
-            echo Hi :D!
+          echo Hi :D!
+
+# https://github.com/marketplace/actions/aws-cloudformation-deploy-cloudformation-stack-action-for-github-actions
