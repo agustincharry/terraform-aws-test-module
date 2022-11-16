@@ -17,6 +17,6 @@ jobs:
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
       region: us-east-1
-    secrets:
+    #secrets:
       access-key-id: ${{ github.event.inputs.access-key-id }}
       secret-access-key: ${{ github.event.inputs.secret-access-key }}
