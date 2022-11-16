@@ -1,10 +1,10 @@
-name: Test
+name: CD Cloudformation
 
 on:
   workflow_dispatch:
 
 jobs:
   call-workflow-passing-data:
-    uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
+    uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml
     #with:
     #  config-path: .github/labeler.yml
