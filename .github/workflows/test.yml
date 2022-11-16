@@ -2,9 +2,21 @@ name: CD Cloudformation
 
 on:
   workflow_dispatch:
+    inputs:
+      access-key-id:
+        type: string
+        required: true
+        description: AWS Access Key ID
+      secret-access-key:
+        type: string
+        required: true
+        description: AWS Secret Access Key
 
 jobs:
   call-workflow-passing-data:
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
-    #with:
-    #  config-path: .github/labeler.yml
+    with:
+      region: us-east-1
+    secrets:
+      access-key-id: ${{ github.event.inputs.access-key-id }}
+      secret-access-key: ${{ github.event.inputs.secret-access-key }}
