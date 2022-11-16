@@ -5,6 +5,6 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: rayo-inc/terraform-aws-reference-arch/.github/workflows/deploy_cloudformation.yml@main
+    uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     #with:
     #  config-path: .github/labeler.yml
