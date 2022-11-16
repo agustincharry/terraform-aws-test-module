@@ -20,6 +20,10 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      - name: script
+        run: |
+          cat $GITHUB_EVENT_PATH
+
       - name: Clone repo
         uses: actions/checkout@v3
       
