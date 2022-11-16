@@ -2,19 +2,24 @@ name: Cloudformation Deployment - Reusable workflow
 
 on:
   workflow_dispatch:
-  workflow_call:
     inputs:
       region:
         type: string
         required: false
-        default: 'us-east-1'
+        default: us-east-1
+        description: region
     #secrets:
       access-key-id:
         type: string
         required: true
+        description: access-key-id
       secret-access-key:
         type: string
         required: true
+        description: secret-access-key
+    
+  workflow_call:
+    
 
 
 jobs:
