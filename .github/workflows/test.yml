@@ -3,20 +3,14 @@ name: CD Cloudformation
 on:
   workflow_dispatch:
     inputs:
-      access-key-id:
+      region:
         type: string
-        required: true
-        description: AWS Access Key ID
-      secret-access-key:
-        type: string
-        required: true
-        description: AWS Secret Access Key
+        required: false
+        default: us-east-1
+        description: AWS Region
 
 jobs:
   call-workflow-passing-data:
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
-      region: us-east-1
-    #secrets:
-      access-key-id: ${{ github.event.inputs.access-key-id }}
-      secret-access-key: ${{ github.event.inputs.secret-access-key }}
+      region: ${{ github.event.inputs.region }}
