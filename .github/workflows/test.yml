@@ -11,9 +11,6 @@ on:
 
 jobs:
   deploy-dev:
-    permissions:
-      id-token: write
-      contents: read
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
       template: ./template.yaml

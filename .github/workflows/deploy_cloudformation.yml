@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    name: Create Release
+    name: Deploy Cloudformation Template
     runs-on: ubuntu-latest
     permissions:
       id-token: write
