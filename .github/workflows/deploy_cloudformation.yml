@@ -13,7 +13,6 @@ on:
         required: true
         description: Path of the Cloudformation Template .yaml
 
-
 jobs:
   build:
     name: Deploy Cloudformation Template
@@ -25,6 +24,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v3
       
+      # https://github.com/aws-actions/configure-aws-credentials
       - name: Configure AWS credentials
         id: creds
         uses: aws-actions/configure-aws-credentials@v1
