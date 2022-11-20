@@ -56,12 +56,12 @@ jobs:
           framework: cloudformation
           soft_fail: true
 
+      # https://github.com/aws-actions/aws-cloudformation-github-deploy
       - name: Deploy Cloudformation Template
         id: deploy
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: ${{ steps.env-name.outputs.environment }}-cluster
           template: ${{ inputs.template }}
+          no-fail-on-empty-changeset: "1"
 
-
-# https://github.com/marketplace/actions/aws-cloudformation-deploy-cloudformation-stack-action-for-github-actions
