@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Testing GitHub Actions
+
+Resources:
+
+  rParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: MyParameter
+      Type: String
+      Value: Hi!
+      Description: Testing GitHub Actions - Delete it.
