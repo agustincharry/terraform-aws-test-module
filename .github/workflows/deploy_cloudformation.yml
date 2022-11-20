@@ -1,7 +1,8 @@
 name: Cloudformation Deployment - Reusable workflow
 
 on: 
-  workflow_call:
+  #workflow_call:
+  workflow_dispatch:
     inputs:
       region:
         type: string
@@ -28,7 +29,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ inputs.region }}
+          #aws-region: ${{ inputs.region }}
+          aws-region: ${{ github.event.inputs.region }}
 
       - name: script
         run: |
