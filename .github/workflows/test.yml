@@ -3,32 +3,32 @@ name: CD Cloudformation
 on:
   workflow_dispatch:
     inputs:
-      region:
+      cf_template:
         type: string
         required: false
-        default: us-east-1
-        description: AWS Region
+        default: ./template.yaml
+        description: Path of the Cloudformation Template .yaml
 
 jobs:
   deploy-dev:
     name: Deploy DEV
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
-    with:
-      template: ./template.yaml
     secrets: inherit # pass all secrets
-  
+    with:
+      cf_template: ${{ github.event.inputs.cf_template }}
+
   deploy-qa:
     name: Deploy QA
     needs: deploy-dev
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
-    with:
-      template: ./template.yaml
     secrets: inherit # pass all secrets
+    with:
+      cf_template: ${{ github.event.inputs.cf_template }}
 
   deploy-pdn:
     name: Deploy PDN
     needs: deploy-qa
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
-    with:
-      template: ./template.yaml
     secrets: inherit # pass all secrets
+    with:
+      cf_template: ${{ github.event.inputs.cf_template }}
