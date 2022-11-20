@@ -11,6 +11,9 @@ on:
 
 jobs:
   call-workflow-passing-data:
+    permissions:
+      id-token: write
+      contents: read
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
       region: ${{ github.event.inputs.region }}
