@@ -53,6 +53,7 @@ jobs:
         with:
           file: ${{ inputs.template }}
           framework: cloudformation
+          output_format: cli
 
       - name: Deploy Cloudformation Template
         id: deploy
