@@ -34,9 +34,9 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ inputs.region }}
 
-      - name: script
+      - name: Script
         run: |
-          echo Hi :D!
+          echo Deploying Cloudformation Template
 
       - name: Configure environment name
         id: env-name
