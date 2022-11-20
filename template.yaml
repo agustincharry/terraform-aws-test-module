@@ -8,5 +8,5 @@ Resources:
     Properties:
       Name: MyParameter
       Type: String
-      Value: Hi!
+      Value: Hi! 2
       Description: Testing GitHub Actions - Delete it.

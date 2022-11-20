@@ -17,4 +17,5 @@ jobs:
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
       region: ${{ github.event.inputs.region }}
+      template: ./template.yaml
     secrets: inherit # pass all secrets
