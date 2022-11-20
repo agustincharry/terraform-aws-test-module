@@ -43,12 +43,7 @@ jobs:
           echo "Environment name: $ENVIRONMENT"
           echo "::set-output name=environment::$ENVIRONMENT"
 
-      - name: Deploy Cloudformation Template
-        id: deploy
-        uses: aws-actions/aws-cloudformation-github-deploy@master
-        with:
-          name: ${{ steps.env-name.outputs.environment }}-cluster
-          template: ./template.yaml
+      
 
 
 # https://github.com/marketplace/actions/aws-cloudformation-deploy-cloudformation-stack-action-for-github-actions
