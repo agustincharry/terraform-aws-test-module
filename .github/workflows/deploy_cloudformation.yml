@@ -47,13 +47,14 @@ jobs:
           echo "Environment name: $ENVIRONMENT"
           echo "::set-output name=environment::$ENVIRONMENT"
 
+      # https://github.com/bridgecrewio/checkov-action
       - name: Run Checkov analysis
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
           file: ${{ inputs.template }}
           framework: cloudformation
-          output_format: cli
+          # output_format: cli
 
       - name: Deploy Cloudformation Template
         id: deploy

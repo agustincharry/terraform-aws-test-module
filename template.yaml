@@ -9,7 +9,7 @@ Resources:
       Name: MyParameter
       Type: String
       Value: Hi! 2
-      Description: Testing GitHub Actions - Delete it.
+      Description: Testing GitHub Actions - Delete this.
   
   rParameter2:
     Type: AWS::SSM::Parameter
@@ -17,4 +17,15 @@ Resources:
       Name: MyParameter2
       Type: String
       Value: Hi! 2
-      Description: Testing GitHub Actions - Delete it.
+      Description: Testing GitHub Actions - Delete this.
+  
+  rSecret:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: MySecretTEst
+      Description: "Testing GitHub Actions - Delete this."
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "test-user"}'
+        GenerateStringKey: "password"
+        PasswordLength: 30
+        ExcludeCharacters: '"@/\'
