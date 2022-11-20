@@ -10,12 +10,20 @@ on:
         description: AWS Region
 
 jobs:
-  call-workflow-passing-data:
+  deploy-dev:
     permissions:
       id-token: write
       contents: read
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
-      region: ${{ github.event.inputs.region }}
+      template: ./template.yaml
+    secrets: inherit # pass all secrets
+  
+  deploy-qa:
+    permissions:
+      id-token: write
+      contents: read
+    uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
+    with:
       template: ./template.yaml
     secrets: inherit # pass all secrets
