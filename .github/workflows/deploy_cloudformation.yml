@@ -1,19 +1,22 @@
 name: Cloudformation Deployment - Reusable workflow
 
 on: 
-  workflow_call:
+  workflow_dispatch:
     inputs:
       region:
         type: string
         required: false
         default: us-east-1
+        description: region
     #secrets:
       access-key-id:
         type: string
         required: true
+        description: access-key-id
       secret-access-key:
         type: string
         required: true
+        description: secret-access-key
 
 
 jobs:
@@ -34,14 +37,22 @@ jobs:
       #    aws-access-key-id: ${{ inputs.access-key-id }}
       #    aws-secret-access-key: ${{ inputs.secret-access-key }}
       #    aws-region: ${{ inputs.region }}
-      
+    
       - name: Configure AWS credentials
         id: creds
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ inputs.region }}
+          aws-access-key-id: ${{ github.event.inputs.access-key-id }}
+          aws-secret-access-key: ${{ github.event.inputs.secret-access-key }}
+          aws-region: ${{ github.event.inputs.region }}
+      
+      #- name: Configure AWS credentials
+      #  id: creds
+      #  uses: aws-actions/configure-aws-credentials@master
+      #  with:
+      #    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #    aws-region: ${{ inputs.region }}
 
       - name: script
         run: |
