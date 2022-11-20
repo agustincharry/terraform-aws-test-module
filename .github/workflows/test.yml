@@ -11,16 +11,23 @@ on:
 
 jobs:
   deploy-dev:
+    name: Deploy DEV
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
       template: ./template.yaml
     secrets: inherit # pass all secrets
   
   deploy-qa:
+    name: Deploy QA
     needs: deploy-dev
-    permissions:
-      id-token: write
-      contents: read
+    uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
+    with:
+      template: ./template.yaml
+    secrets: inherit # pass all secrets
+
+  deploy-pdn:
+    name: Deploy PDN
+    needs: deploy-qa
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
     with:
       template: ./template.yaml
