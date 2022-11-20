@@ -54,7 +54,7 @@ jobs:
         with:
           file: ${{ inputs.template }}
           framework: cloudformation
-          # output_format: cli
+          soft_fail: true
 
       - name: Deploy Cloudformation Template
         id: deploy
