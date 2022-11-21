@@ -60,15 +60,18 @@ jobs:
           framework: cloudformation
           soft_fail: true
 
-      # https://github.com/juliangruber/read-file-action
-      - name: Read parameters file
-        id: package
-        uses: juliangruber/read-file-action@v1
+    
+      
+      - name: Read file contents
+        id: read_file
+        uses: andstor/file-reader-action@v1
         with:
           path: ${{ inputs.parameters_file }}
       
-      - name: Show parameters
-        run: echo "${{ steps.package.outputs.content }}"
+      - name: File contents
+        run: echo "${ steps.read_file.outputs.contents }"
+
+
 
       # https://github.com/aws-actions/aws-cloudformation-github-deploy
       #- name: Deploy Cloudformation Template
