@@ -28,19 +28,19 @@ on:
         type: string
         required: true
         description: Environment. "dev", "qa" or "pdn".
-    secrets:
-      secret_parameters:
-        required: false
-        description: Secret parameters to add.
+    #secrets:
+    #  secret_parameters:
+    #    required: false
+    #    description: Secret parameters to add.
 
 jobs:
   build:
     name: Deploy Cloudformation Template
     runs-on: ubuntu-latest
     environment: ${{ inputs.env }}
-    permissions:
-      id-token: write
-      contents: read
+    #permissions:
+    #  id-token: write
+    #  contents: read
     steps:
       - name: Clone repo
         uses: actions/checkout@v3
@@ -88,4 +88,4 @@ jobs:
           no-fail-on-empty-changeset: "1"
           parameter-overrides:  >-
             ${{ steps.read_file.outputs.content }}
-            ${{ secrets.secret_parameters }}
+          # ${{ secrets.secret_parameters }}

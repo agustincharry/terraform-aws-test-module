@@ -13,11 +13,10 @@ jobs:
   deploy-dev:
     name: Deploy DEV
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
-    secrets: inherit # pass all secrets
+    secrets: inherit # pass all secrets -> AWS Credentials
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
-      extra_parameters: pSecretValue=${{ secrets.MY_SECRET }}
       stack_name: test-github-actions-dev
       env: dev
 
@@ -25,11 +24,10 @@ jobs:
     name: Deploy QA
     needs: deploy-dev
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
-    secrets: inherit # pass all secrets
+    secrets: inherit # pass all secrets -> AWS Credentials
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
-      extra_parameters: pSecretValue=${{ secrets.MY_SECRET }}
       stack_name: test-github-actions-dev
       env: dev
 
@@ -37,10 +35,9 @@ jobs:
     name: Deploy PDN
     needs: deploy-qa
     uses: agustincharry/terraform-aws-test-module/.github/workflows/deploy_cloudformation.yml@main
-    secrets: inherit # pass all secrets
+    secrets: inherit # pass all secrets -> AWS Credentials
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
-      extra_parameters: pSecretValue=${{ secrets.MY_SECRET }}
       stack_name: test-github-actions-dev
       env: dev
