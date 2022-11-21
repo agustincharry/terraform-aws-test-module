@@ -17,7 +17,7 @@ jobs:
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
-      extra_parameters: pSecretValue=HOlaMudno
+      extra_parameters: pSecretValue=${{ secrets.MY_SECRET }}
       stack_name: test-github-actions-dev
       env: dev
 

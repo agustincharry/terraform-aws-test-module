@@ -28,6 +28,10 @@ on:
         type: string
         required: true
         description: Environment. "dev", "qa" or "pdn".
+    secrets:
+      secret_parameters:
+        required: false
+        description: Secret parameters to add.
 
 jobs:
   build:
@@ -84,4 +88,4 @@ jobs:
           no-fail-on-empty-changeset: "1"
           parameter-overrides:  >-
             ${{ steps.read_file.outputs.content }}
-            ${{ inputs.extra_parameters }}
+            ${{ secrets.secret_parameters }}
