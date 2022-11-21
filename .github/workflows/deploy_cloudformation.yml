@@ -67,8 +67,8 @@ jobs:
         with:
           path: ${{ inputs.parameters_file }}
       
-      - name: Show parameters file contents
-        run: echo "${{ steps.read_file.outputs.content }}"
+      #- name: Show parameters file contents
+      #  run: echo "${{ steps.read_file.outputs.content }}"
 
       # https://github.com/aws-actions/aws-cloudformation-github-deploy
       - name: Deploy Cloudformation Template
