@@ -16,6 +16,10 @@ on:
         type: string
         required: true
         description: Path of the parameters file.
+      extra_parameters:
+        type: string
+        required: false
+        description: Parameters to add, Useful to add secrets.
       stack_name:
         type: string
         required: true
@@ -67,8 +71,8 @@ jobs:
         with:
           path: ${{ inputs.parameters_file }}
       
-      #- name: Show parameters file contents
-      #  run: echo "${{ steps.read_file.outputs.content }}"
+      - name: Show parameters file contents
+        run: echo "${{ steps.read_file.outputs.content }}"
 
       # https://github.com/aws-actions/aws-cloudformation-github-deploy
       - name: Deploy Cloudformation Template
@@ -78,4 +82,6 @@ jobs:
           name: ${{ inputs.stack_name }}
           template: ${{ inputs.cf_template }}
           no-fail-on-empty-changeset: "1"
-          parameter-overrides: ${{ steps.read_file.outputs.content }}
+          parameter-overrides:  >-
+            ${{ steps.read_file.outputs.content }}
+            ${{ inputs.extra_parameters }}
