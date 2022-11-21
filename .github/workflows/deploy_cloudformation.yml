@@ -20,11 +20,16 @@ on:
         type: string
         required: true
         description: Cloudformation Stack name.
+      env:
+        type: string
+        required: true
+        description: Environment. "dev", "qa" or "pdn".
 
 jobs:
   build:
     name: Deploy Cloudformation Template
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
     permissions:
       id-token: write
       contents: read
