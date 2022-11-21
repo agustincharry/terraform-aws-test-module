@@ -11,6 +11,9 @@ Parameters:
   pParameterName2:
     Type: String
     Default: p1
+  pSecretValue:
+    Type: String
+    Default: p1
 
 
 Resources:
@@ -19,7 +22,7 @@ Resources:
     Properties:
       Name: !Join ['-', [Ref: pParameterName1, Ref: pEnv]]
       Type: String
-      Value: Hi!
+      Value: !Ref pSecretValue
       Description: Testing GitHub Actions - Delete this.
   
   rParameter2:

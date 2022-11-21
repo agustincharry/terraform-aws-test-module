@@ -1,3 +1,4 @@
 pEnv=dev,
 pParameterName1=MyParameter1-github,
-pParameterName2=MyParameter2-github
+pParameterName2=MyParameter2-github,
+pSecretValue=${{ secrets.MY_SECRET }}
