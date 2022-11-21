@@ -1,12 +1,23 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Testing GitHub Actions
 
-Resources:
+Parameters:
+  pEnv:
+    Type: String
+    Default: dev
+  pParameterName1:
+    Type: String
+    Default: p1
+  pParameterName2:
+    Type: String
+    Default: p1
 
+
+Resources:
   rParameter:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: MyParameter
+      Name: !Join ['-', [Ref: pParameterName1, Ref: pEnv]]
       Type: String
       Value: Hi! 2
       Description: Testing GitHub Actions - Delete this.

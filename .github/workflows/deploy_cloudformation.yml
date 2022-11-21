@@ -12,6 +12,10 @@ on:
         type: string
         required: true
         description: Path of the Cloudformation Template .yaml
+      parameters_file:
+        type: string
+        required: true
+        description: Path of the parameters file.
 
 jobs:
   build:
@@ -56,12 +60,23 @@ jobs:
           framework: cloudformation
           soft_fail: true
 
-      # https://github.com/aws-actions/aws-cloudformation-github-deploy
-      - name: Deploy Cloudformation Template
-        id: deploy
-        uses: aws-actions/aws-cloudformation-github-deploy@v1
+      # https://github.com/juliangruber/read-file-action
+      - name: Read parameters file
+        id: package
+        uses: juliangruber/read-file-action@v1
         with:
-          name: ${{ steps.env-name.outputs.environment }}-cluster
-          template: ${{ inputs.cf_template }}
-          no-fail-on-empty-changeset: "1"
+          path: ${{ inputs.parameters_file }}
+      
+      - name: Show parameters
+        run: echo "${{ steps.package.outputs.content }}"
+
+      # https://github.com/aws-actions/aws-cloudformation-github-deploy
+      #- name: Deploy Cloudformation Template
+      #  id: deploy
+      #  uses: aws-actions/aws-cloudformation-github-deploy@v1
+      #  with:
+      #    name: ${{ steps.env-name.outputs.environment }}-cluster
+      #    template: ${{ inputs.cf_template }}
+      #    no-fail-on-empty-changeset: "1"
+      #    parameter-overrides:
 
