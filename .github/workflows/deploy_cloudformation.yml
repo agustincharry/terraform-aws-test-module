@@ -60,26 +60,22 @@ jobs:
           framework: cloudformation
           soft_fail: true
 
-    
-      
-      - name: Read file contents
+      # https://github.com/juliangruber/read-file-action
+      - name: Read parameters file contents
         id: read_file
         uses: juliangruber/read-file-action@v1
         with:
           path: ${{ inputs.parameters_file }}
       
-      - name: File contents
+      - name: Show parameters file contents
         run: echo "${{ steps.read_file.outputs.content }}"
 
-
-
       # https://github.com/aws-actions/aws-cloudformation-github-deploy
-      #- name: Deploy Cloudformation Template
-      #  id: deploy
-      #  uses: aws-actions/aws-cloudformation-github-deploy@v1
-      #  with:
-      #    name: ${{ steps.env-name.outputs.environment }}-cluster
-      #    template: ${{ inputs.cf_template }}
-      #    no-fail-on-empty-changeset: "1"
-      #    parameter-overrides:
-
+      - name: Deploy Cloudformation Template
+        id: deploy
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: ${{ steps.env-name.outputs.environment }}-cluster
+          template: ${{ inputs.cf_template }}
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: ${{ steps.read_file.outputs.content }}
