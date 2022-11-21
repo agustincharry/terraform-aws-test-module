@@ -25,7 +25,7 @@ Resources:
   rParameter2:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: MyParameter2
+      Name: !Join ['-', [Ref: pParameterName2, Ref: pEnv]]
       Type: String
       Value: Hi! 2
       Description: Testing GitHub Actions - Delete this.
