@@ -40,4 +40,4 @@ jobs:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
       stack_name: test-github-actions-dev
-      env: dev
+      env: pdn
