@@ -16,6 +16,7 @@ jobs:
     secrets: inherit # pass all secrets
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
+      parameters_file: ./parameters-dev
 
   deploy-qa:
     name: Deploy QA
@@ -24,6 +25,7 @@ jobs:
     secrets: inherit # pass all secrets
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
+      parameters_file: ./parameters-dev
 
   deploy-pdn:
     name: Deploy PDN
@@ -32,3 +34,4 @@ jobs:
     secrets: inherit # pass all secrets
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
+      parameters_file: ./parameters-dev
