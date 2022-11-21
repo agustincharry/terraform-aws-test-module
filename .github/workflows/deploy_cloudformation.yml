@@ -16,6 +16,10 @@ on:
         type: string
         required: true
         description: Path of the parameters file.
+      stack_name:
+        type: string
+        required: true
+        description: Cloudformation Stack name.
 
 jobs:
   build:
@@ -42,14 +46,14 @@ jobs:
         run: |
           echo Deploying Cloudformation Template
 
-      - name: Configure environment name
-        id: env-name
-        env:
-          REPO: ${{ github.repository }}
-        run: |
-          ENVIRONMENT=`echo $REPO | tr "/" "-"`
-          echo "Environment name: $ENVIRONMENT"
-          echo "::set-output name=environment::$ENVIRONMENT"
+      #- name: Configure environment name
+      #  id: env-name
+      #  env:
+      #    REPO: ${{ github.repository }}
+      #  run: |
+      #    ENVIRONMENT=`echo $REPO | tr "/" "-"`
+      #    echo "Environment name: $ENVIRONMENT"
+      #    echo "::set-output name=environment::$ENVIRONMENT"
 
       # https://github.com/bridgecrewio/checkov-action
       - name: Run Checkov analysis
@@ -75,7 +79,7 @@ jobs:
         id: deploy
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: ${{ steps.env-name.outputs.environment }}-cluster
+          name: ${{ inputs.stack_name }}
           template: ${{ inputs.cf_template }}
           no-fail-on-empty-changeset: "1"
           parameter-overrides: ${{ steps.read_file.outputs.content }}

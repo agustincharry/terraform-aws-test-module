@@ -19,7 +19,7 @@ Resources:
     Properties:
       Name: !Join ['-', [Ref: pParameterName1, Ref: pEnv]]
       Type: String
-      Value: Hi! 2
+      Value: Hi!
       Description: Testing GitHub Actions - Delete this.
   
   rParameter2:

@@ -17,6 +17,7 @@ jobs:
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
+      stack_name: test-github-actions-dev
 
   deploy-qa:
     name: Deploy QA
@@ -26,6 +27,7 @@ jobs:
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
+      stack_name: test-github-actions-dev
 
   deploy-pdn:
     name: Deploy PDN
@@ -35,3 +37,4 @@ jobs:
     with:
       cf_template: ${{ github.event.inputs.cf_template }}
       parameters_file: ./parameters-dev
+      stack_name: test-github-actions-pdn
