@@ -69,7 +69,7 @@ jobs:
           path: ${{ inputs.parameters_file }}
       
       - name: File contents
-        run: echo "${ steps.read_file.outputs.contents }"
+        run: echo ${ steps.read_file.outputs.contents }
 
 
 
