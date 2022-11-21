@@ -64,12 +64,12 @@ jobs:
       
       - name: Read file contents
         id: read_file
-        uses: andstor/file-reader-action@v1
+        uses: juliangruber/read-file-action@v1
         with:
           path: ${{ inputs.parameters_file }}
       
       - name: File contents
-        run: echo ${ steps.read_file.outputs.contents }
+        run: echo "${{ steps.read_file.outputs.content }}"
 
 
 
