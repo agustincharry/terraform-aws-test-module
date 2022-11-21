@@ -46,15 +46,6 @@ jobs:
         run: |
           echo Deploying Cloudformation Template
 
-      #- name: Configure environment name
-      #  id: env-name
-      #  env:
-      #    REPO: ${{ github.repository }}
-      #  run: |
-      #    ENVIRONMENT=`echo $REPO | tr "/" "-"`
-      #    echo "Environment name: $ENVIRONMENT"
-      #    echo "::set-output name=environment::$ENVIRONMENT"
-
       # https://github.com/bridgecrewio/checkov-action
       - name: Run Checkov analysis
         id: checkov
